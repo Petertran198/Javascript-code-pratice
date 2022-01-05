@@ -8,6 +8,7 @@ let anagram = (word1, word2) => {
     }
 
     for (w of word1) {
+        //Split the word into an array seperating by that char. After that count the length and subtract one to find how many instance of that word was found
         if (word1.split(w).length - 1 != word2.split(w).length - 1) {
             return false;
         }
