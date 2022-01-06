@@ -49,3 +49,20 @@ let loopAndCheckIfIdentical = (word1, word2) => {
 
 console.log('Frie2d && Fired2 are anagrams ---------', anagram2('Frie2d', 'Fired2'));
 console.log('rue && eu r are anagrams ---------', anagram2('rue', 'ru e'));
+
+// Third solution using Sort
+
+let anagram3 = (word1, word2) => {
+    //Replaced all non words
+    //Split it into an array
+    //Sort the array
+    //Join the array to make a word
+    //Compare the two words
+    let replacedWord1 = word1.replace(/[^\w]/gm, '').split('').sort().join('');
+    let replacedWord2 = word2.replace(/[^\w]/gm, '').split('').sort().join('');
+
+    return replacedWord1 === replacedWord2 ? true : false;
+};
+
+console.log('Frie2d && Fired2 are anagrams ---------', anagram3('Frie2d', 'Fired2'));
+console.log('rue && eu r are anagrams ---------', anagram3('rue', 'ru e'));
