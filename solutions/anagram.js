@@ -1,3 +1,5 @@
+//Take out all nonwords and checj if it is an anagram
+
 let anagram = (word1, word2) => {
     //Replaced all non words
     let replacedWord1 = word1.replace(/[^\w]/gm, '').toLowerCase();
@@ -26,21 +28,19 @@ console.log('rue && ruee are anagrams ---------', anagram('rue', 'ruee'));
 
 //Cleaned Up Verision------------------------------------------------
 let anagram2 = (word1, word2) => {
-    //Replaced all non words
     let replacedWord1 = word1.replace(/[^\w]/gm, '').toLowerCase();
     let replacedWord2 = word2.replace(/[^\w]/gm, '').toLowerCase();
-
+    loopAndCheckIfIdentical(replacedWord1, replacedWord2);
+    loopAndCheckIfIdentical(replacedWord2, replacedWord1);
     if (replacedWord1.length != replacedWord2.length) {
         return false;
     }
-    loopAndReplace(word1, word2);
-    loopAndReplace(word2, word1);
 
     return true;
 };
 
-let loopAndReplace = (word1, word2) => {
-    for (let char of word1.replace(/[^\w]/gm, '')) {
+let loopAndCheckIfIdentical = (word1, word2) => {
+    for (let char of word1.toLowerCase()) {
         if (word1.split(char).length - 1 != word2.split(char).length - 1) {
             return false;
         }
@@ -48,4 +48,4 @@ let loopAndReplace = (word1, word2) => {
 };
 
 console.log('Frie2d && Fired2 are anagrams ---------', anagram2('Frie2d', 'Fired2'));
-console.log('rue && ruee are anagrams ---------', anagram2('rue', 'ruee'));
+console.log('rue && eu r are anagrams ---------', anagram2('rue', 'ru e'));
