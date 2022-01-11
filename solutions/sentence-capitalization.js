@@ -28,3 +28,32 @@ let capitalizeSentence2 = (sen) => {
     return capitalizeEveryWord;
 };
 console.log(capitalizeSentence1('Hello, my friend'));
+
+let capitalizeSentence3 = (sen) => {
+    //Split the sentence to individual char array
+    let senArray = sen.split('');
+    //Capitalize the first letter of the Sentence as it is the first word only if the first character is not a digit
+    if (senArray[0].toUpperCase()) {
+        //remove the first letter, capitalize it, and add it back in
+        let firstLetter = senArray.shift().toUpperCase();
+        senArray.unshift(firstLetter);
+    }
+    //loop through each of the character
+    for (let i = 0; i < senArray.length; i++) {
+        let nextIndex = i + 1;
+        //If the character is a space, has another character following it, and can be capitalize
+        if (
+            senArray[i] === ' ' &&
+            senArray[nextIndex] &&
+            senArray[nextIndex].toUpperCase()
+        ) {
+            //Retrive that following character, uppercase it
+            let capitalizeLetter = senArray[nextIndex].toUpperCase();
+            //Remove the old uncapitalize character and add the new captalized character in its place
+            senArray.splice(nextIndex, 1, capitalizeLetter);
+        }
+    }
+    senArray = senArray.join('');
+    return senArray;
+};
+console.log(capitalizeSentence3('hello, my Friend'));
