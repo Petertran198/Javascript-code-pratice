@@ -29,6 +29,8 @@ let capitalizeSentence2 = (sen) => {
 };
 console.log(capitalizeSentence1('Hello, my friend'));
 
+//-------------------------------------------------------------------------------------------------------------
+//Worse solution out of the three but its a nice way to workout ur brain
 let capitalizeSentence3 = (sen) => {
     //Split the sentence to individual char array
     let senArray = sen.split('');
@@ -57,3 +59,22 @@ let capitalizeSentence3 = (sen) => {
     return senArray;
 };
 console.log(capitalizeSentence3('hello, my Friend'));
+
+//-------------------------------------------------------------------------------------------------------------
+//Solution rebuilding the string
+//search for a space
+//if space capitalized the character before
+//else just return the character
+let capitalizeSentence4 = (sen) => {
+    let everyWordCapitalized = sen[0].toUpperCase() && sen[0].toUpperCase();
+    for (let i = 1; i < sen.length; i++) {
+        let previousIndex = i - 1;
+        if (sen[i] === ' ' && sen[i].toUpperCase()) {
+            everyWordCapitalized += sen[previousIndex].toUpperCase();
+        } else {
+            everyWordCapitalized += sen[previousIndex];
+        }
+    }
+    return everyWordCapitalized;
+};
+console.log(capitalizeSentence3('1ello, my Friend'));
