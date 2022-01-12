@@ -10,7 +10,7 @@
 // "## "
 // "###"
 //The difficult part is u have to have the amount of spaces for each steps
-
+// Bad solution O(n^3) because of 3 loops
 let steps = (n) => {
     let step = '#';
     let staircase = '';
@@ -36,3 +36,28 @@ let steps = (n) => {
 };
 
 console.log(steps(3));
+
+//Better solution uses O(n^2)
+let steps2 = (n) => {
+    //Holds the staircase
+    let stairCase = '';
+    //In charge of making the rows. ( n=3) === (rows=3)
+    for (let rows = 0; rows < n; rows++) {
+        //A column is correlated to a '#'
+        // using steps(3)
+        // first column will have 1 hashtags and two space
+        // second column will have 2 hashtags and 1 space
+        let stair = '';
+        for (let column = 0; column <= n; column++) {
+            if (column <= rows) {
+                stair += '#';
+            } else {
+                stair += ' ';
+            }
+        }
+        stairCase += stair + '\n';
+    }
+    return stairCase;
+};
+
+console.log(steps2(3));
