@@ -13,10 +13,11 @@
 
 let steps = (n) => {
     let step = '#';
+    let staircase = '';
     //x here is used to keep track of how many steps we have so far
     for (let x = 1; x <= n; x++) {
         let space = ' ';
-        let sentence = '';
+        let stepSentence = '';
         //To determine how many spaces we need for each sentence we take the total amount of space we can have in each sen(n) and subtract it by the steps we have.
         //Example steps(3) "#  "
         // steps = 3
@@ -26,11 +27,12 @@ let steps = (n) => {
             space += ' ';
         }
         while (step.length != x) {
-            sign += '#';
+            step += '#';
         }
-        sentence = sign + space;
-        console.log(sentence);
+        stepSentence = step + space;
+        staircase += stepSentence + '\n';
     }
+    return staircase;
 };
 
-steps(3);
+console.log(steps(3));
