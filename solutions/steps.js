@@ -10,7 +10,7 @@
 // "## "
 // "###"
 //The difficult part is u have to have the amount of spaces for each steps
-// Bad solution O(n^3) because of 3 loops
+// O(n^2)
 let steps = (n) => {
     let step = '#';
     let staircase = '';
@@ -37,11 +37,11 @@ let steps = (n) => {
 
 console.log(steps(3));
 
-//Better solution uses O(n^2)
+// O(n^2)
 let steps2 = (n) => {
     //Holds the staircase
     let stairCase = '';
-    //In charge of making the rows. ( n=3) === (rows=3)
+    //In charge of making the rows. ( n=3)  means there will be 3 rows
     for (let rows = 0; rows < n; rows++) {
         //A column is correlated to a '#'
         // using steps(3)
@@ -61,3 +61,53 @@ let steps2 = (n) => {
 };
 
 console.log(steps2(3));
+
+// //-----------------------------------------
+// bad recursive speed  O(2^N)
+let steps3 = (n, row = 0) => {
+    if (n === row) {
+        return;
+    } else {
+        let arr = new Array(n);
+        for (let i = 0; i < n; i++) {
+            if (i <= row) {
+                arr[i] = '#';
+            } else {
+                arr[i] = ' ';
+            }
+        }
+        let s = arr.join('');
+        console.log(s);
+        steps3(n, row + 1);
+    }
+};
+
+steps3(3, 0);
+
+// Recursion 4 better
+let step4 = (n, stairStep = 0, stairString = '') => {
+    //In charge of breaking out of the function completely once the amount of "stairStep rows" are printed completely
+    if (n === stairStep) {
+        return;
+    }
+
+    //In charge of breaking up when the stairStep sentence of each row is completed
+    if (stairString.length == n) {
+        console.log(stairString);
+        step4(n, stairStep + 1, '');
+        //if stairString is completed
+        // go to the next stairStep row and break from old function
+        return;
+    }
+
+    //In charge of building the stairString
+    if (stairString.length <= stairStep) {
+        stairString += '#';
+    } else {
+        stairString += ' ';
+    }
+    //In charge of building the stairString
+    step4(n, stairStep, stairString);
+};
+
+step4(4, 0);
